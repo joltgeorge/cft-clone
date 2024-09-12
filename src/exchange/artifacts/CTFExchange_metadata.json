@@ -1,0 +1,2662 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_collateral",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_ctf",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_proxyFactory",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_safeFactory",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "AlreadyRegistered",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ECDSAInvalidSignature",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "length",
+						"type": "uint256"
+					}
+				],
+				"name": "ECDSAInvalidSignatureLength",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "s",
+						"type": "bytes32"
+					}
+				],
+				"name": "ECDSAInvalidSignatureS",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "FeeTooHigh",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidComplement",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidNonce",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidShortString",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidSignature",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidTokenId",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "MakingGtRemaining",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "MismatchedTokenIds",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NotAdmin",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NotCrossing",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NotOperator",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NotOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NotTaker",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "OrderExpired",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "OrderFilledOrCancelled",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "Paused",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "str",
+						"type": "string"
+					}
+				],
+				"name": "StringTooLong",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "TooLittleTokensReceived",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [],
+				"name": "EIP712DomainChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "FeeCharged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newAdminAddress",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					}
+				],
+				"name": "NewAdmin",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOperatorAddress",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					}
+				],
+				"name": "NewOperator",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "orderHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "OrderCancelled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "orderHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "maker",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "taker",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "makerAssetId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "takerAssetId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "makerAmountFilled",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "takerAmountFilled",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "fee",
+						"type": "uint256"
+					}
+				],
+				"name": "OrderFilled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "takerOrderHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "takerOrderMaker",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "makerAssetId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "takerAssetId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "makerAmountFilled",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "takerAmountFilled",
+						"type": "uint256"
+					}
+				],
+				"name": "OrdersMatched",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "oldProxyFactory",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newProxyFactory",
+						"type": "address"
+					}
+				],
+				"name": "ProxyFactoryUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "removedAdmin",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					}
+				],
+				"name": "RemovedAdmin",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "removedOperator",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					}
+				],
+				"name": "RemovedOperator",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "oldSafeFactory",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newSafeFactory",
+						"type": "address"
+					}
+				],
+				"name": "SafeFactoryUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "token0",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "token1",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					}
+				],
+				"name": "TokenRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "pauser",
+						"type": "address"
+					}
+				],
+				"name": "TradingPaused",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "pauser",
+						"type": "address"
+					}
+				],
+				"name": "TradingUnpaused",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "admin_",
+						"type": "address"
+					}
+				],
+				"name": "addAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "operator_",
+						"type": "address"
+					}
+				],
+				"name": "addOperator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "admins",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "salt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "maker",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "signer",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "taker",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "makerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "takerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expiration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "nonce",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "feeRateBps",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum Side",
+								"name": "side",
+								"type": "uint8"
+							},
+							{
+								"internalType": "enum SignatureType",
+								"name": "signatureType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bytes",
+								"name": "signature",
+								"type": "bytes"
+							}
+						],
+						"internalType": "struct Order",
+						"name": "order",
+						"type": "tuple"
+					}
+				],
+				"name": "cancelOrder",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "salt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "maker",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "signer",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "taker",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "makerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "takerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expiration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "nonce",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "feeRateBps",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum Side",
+								"name": "side",
+								"type": "uint8"
+							},
+							{
+								"internalType": "enum SignatureType",
+								"name": "signatureType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bytes",
+								"name": "signature",
+								"type": "bytes"
+							}
+						],
+						"internalType": "struct Order[]",
+						"name": "orders",
+						"type": "tuple[]"
+					}
+				],
+				"name": "cancelOrders",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "domainSeparator",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "eip712Domain",
+				"outputs": [
+					{
+						"internalType": "bytes1",
+						"name": "fields",
+						"type": "bytes1"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "version",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "chainId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "verifyingContract",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "salt",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "extensions",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "salt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "maker",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "signer",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "taker",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "makerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "takerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expiration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "nonce",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "feeRateBps",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum Side",
+								"name": "side",
+								"type": "uint8"
+							},
+							{
+								"internalType": "enum SignatureType",
+								"name": "signatureType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bytes",
+								"name": "signature",
+								"type": "bytes"
+							}
+						],
+						"internalType": "struct Order",
+						"name": "order",
+						"type": "tuple"
+					},
+					{
+						"internalType": "uint256",
+						"name": "fillAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "fillOrder",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "salt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "maker",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "signer",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "taker",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "makerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "takerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expiration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "nonce",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "feeRateBps",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum Side",
+								"name": "side",
+								"type": "uint8"
+							},
+							{
+								"internalType": "enum SignatureType",
+								"name": "signatureType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bytes",
+								"name": "signature",
+								"type": "bytes"
+							}
+						],
+						"internalType": "struct Order[]",
+						"name": "orders",
+						"type": "tuple[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "fillAmounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "fillOrders",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCollateral",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "token",
+						"type": "uint256"
+					}
+				],
+				"name": "getComplement",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "token",
+						"type": "uint256"
+					}
+				],
+				"name": "getConditionId",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCtf",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMaxFeeRate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "orderHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "getOrderStatus",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "bool",
+								"name": "isFilledOrCancelled",
+								"type": "bool"
+							},
+							{
+								"internalType": "uint256",
+								"name": "remaining",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct OrderStatus",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPolyProxyFactoryImplementation",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "getPolyProxyWalletAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getProxyFactory",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "getSafeAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getSafeFactory",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getSafeFactoryImplementation",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "salt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "maker",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "signer",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "taker",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "makerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "takerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expiration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "nonce",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "feeRateBps",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum Side",
+								"name": "side",
+								"type": "uint8"
+							},
+							{
+								"internalType": "enum SignatureType",
+								"name": "signatureType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bytes",
+								"name": "signature",
+								"type": "bytes"
+							}
+						],
+						"internalType": "struct Order",
+						"name": "order",
+						"type": "tuple"
+					}
+				],
+				"name": "hashOrder",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "incrementNonce",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "usr",
+						"type": "address"
+					}
+				],
+				"name": "isAdmin",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "usr",
+						"type": "address"
+					}
+				],
+				"name": "isOperator",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "usr",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "nonce",
+						"type": "uint256"
+					}
+				],
+				"name": "isValidNonce",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "salt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "maker",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "signer",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "taker",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "makerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "takerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expiration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "nonce",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "feeRateBps",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum Side",
+								"name": "side",
+								"type": "uint8"
+							},
+							{
+								"internalType": "enum SignatureType",
+								"name": "signatureType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bytes",
+								"name": "signature",
+								"type": "bytes"
+							}
+						],
+						"internalType": "struct Order",
+						"name": "takerOrder",
+						"type": "tuple"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "salt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "maker",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "signer",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "taker",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "makerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "takerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expiration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "nonce",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "feeRateBps",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum Side",
+								"name": "side",
+								"type": "uint8"
+							},
+							{
+								"internalType": "enum SignatureType",
+								"name": "signatureType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bytes",
+								"name": "signature",
+								"type": "bytes"
+							}
+						],
+						"internalType": "struct Order[]",
+						"name": "makerOrders",
+						"type": "tuple[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "takerFillAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "makerFillAmounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "matchOrders",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "nonces",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "onERC1155BatchReceived",
+				"outputs": [
+					{
+						"internalType": "bytes4",
+						"name": "",
+						"type": "bytes4"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "onERC1155Received",
+				"outputs": [
+					{
+						"internalType": "bytes4",
+						"name": "",
+						"type": "bytes4"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "operators",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "orderStatus",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "isFilledOrCancelled",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "remaining",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "parentCollectionId",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pauseTrading",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "paused",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "proxyFactory",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "token",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "complement",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					}
+				],
+				"name": "registerToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "registry",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "complement",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "conditionId",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					}
+				],
+				"name": "removeAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					}
+				],
+				"name": "removeOperator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceAdminRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOperatorRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "safeFactory",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newProxyFactory",
+						"type": "address"
+					}
+				],
+				"name": "setProxyFactory",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newSafeFactory",
+						"type": "address"
+					}
+				],
+				"name": "setSafeFactory",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "unpauseTrading",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "token",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "complement",
+						"type": "uint256"
+					}
+				],
+				"name": "validateComplement",
+				"outputs": [],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "salt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "maker",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "signer",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "taker",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "makerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "takerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expiration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "nonce",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "feeRateBps",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum Side",
+								"name": "side",
+								"type": "uint8"
+							},
+							{
+								"internalType": "enum SignatureType",
+								"name": "signatureType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bytes",
+								"name": "signature",
+								"type": "bytes"
+							}
+						],
+						"internalType": "struct Order",
+						"name": "order",
+						"type": "tuple"
+					}
+				],
+				"name": "validateOrder",
+				"outputs": [],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "orderHash",
+						"type": "bytes32"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "salt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "maker",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "signer",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "taker",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "makerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "takerAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "expiration",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "nonce",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "feeRateBps",
+								"type": "uint256"
+							},
+							{
+								"internalType": "enum Side",
+								"name": "side",
+								"type": "uint8"
+							},
+							{
+								"internalType": "enum SignatureType",
+								"name": "signatureType",
+								"type": "uint8"
+							},
+							{
+								"internalType": "bytes",
+								"name": "signature",
+								"type": "bytes"
+							}
+						],
+						"internalType": "struct Order",
+						"name": "order",
+						"type": "tuple"
+					}
+				],
+				"name": "validateOrderSignature",
+				"outputs": [],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "validateTokenId",
+				"outputs": [],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Polymarket",
+			"errors": {
+				"ECDSAInvalidSignature()": [
+					{
+						"details": "The signature derives the `address(0)`."
+					}
+				],
+				"ECDSAInvalidSignatureLength(uint256)": [
+					{
+						"details": "The signature has an invalid length."
+					}
+				],
+				"ECDSAInvalidSignatureS(bytes32)": [
+					{
+						"details": "The signature has an S value that is in the upper half order."
+					}
+				]
+			},
+			"events": {
+				"EIP712DomainChanged()": {
+					"details": "MAY be emitted to signal that the domain could have changed."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"addAdmin(address)": {
+					"params": {
+						"admin_": "- The new admin"
+					}
+				},
+				"addOperator(address)": {
+					"params": {
+						"operator_": "- The new operator"
+					}
+				},
+				"eip712Domain()": {
+					"details": "See {IERC-5267}."
+				},
+				"fillOrder((uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes),uint256)": {
+					"params": {
+						"fillAmount": "- The amount to be filled, always in terms of the maker amount",
+						"order": "- The order to be filled"
+					}
+				},
+				"fillOrders((uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes)[],uint256[])": {
+					"params": {
+						"fillAmounts": "- The amounts to be filled, always in terms of the maker amount",
+						"orders": "- The order to be filled"
+					}
+				},
+				"getComplement(uint256)": {
+					"params": {
+						"token": "- The token"
+					}
+				},
+				"getConditionId(uint256)": {
+					"params": {
+						"token": "- The token"
+					}
+				},
+				"getOrderStatus(bytes32)": {
+					"params": {
+						"orderHash": "- The hash of the order"
+					}
+				},
+				"getPolyProxyWalletAddress(address)": {
+					"params": {
+						"_addr": "- The address that owns the proxy wallet"
+					}
+				},
+				"getSafeAddress(address)": {
+					"params": {
+						"_addr": "- The address that owns the proxy wallet"
+					}
+				},
+				"hashOrder((uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes))": {
+					"params": {
+						"order": "- The order to be hashed"
+					}
+				},
+				"matchOrders((uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes),(uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes)[],uint256,uint256[])": {
+					"params": {
+						"makerFillAmounts": "- The array of amounts to fill on the maker orders, always in terms of the maker amount",
+						"makerOrders": "- The array of maker orders to be matched against the active order",
+						"takerFillAmount": "- The amount to fill on the taker order, always in terms of the maker amount",
+						"takerOrder": "- The active order to be matched"
+					}
+				},
+				"registerToken(uint256,uint256,bytes32)": {
+					"params": {
+						"complement": "- The complement of the tokenId",
+						"conditionId": "- The CTF conditionId",
+						"token": "- The tokenId being registered"
+					}
+				},
+				"removeAdmin(address)": {
+					"params": {
+						"admin": "- The admin to be removed"
+					}
+				},
+				"removeOperator(address)": {
+					"params": {
+						"operator": "- The operator to be removed"
+					}
+				},
+				"setProxyFactory(address)": {
+					"params": {
+						"_newProxyFactory": "- The new Proxy Wallet factory"
+					}
+				},
+				"setSafeFactory(address)": {
+					"params": {
+						"_newSafeFactory": "- The new Safe wallet factory"
+					}
+				},
+				"supportsInterface(bytes4)": {
+					"details": "See {IERC165-supportsInterface}."
+				},
+				"validateComplement(uint256,uint256)": {
+					"params": {
+						"complement": "- The complement to be validated",
+						"token": "- The tokenId"
+					}
+				},
+				"validateOrderSignature(bytes32,(uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes))": {
+					"params": {
+						"order": "- The order",
+						"orderHash": "- The hash of the order"
+					}
+				},
+				"validateTokenId(uint256)": {
+					"params": {
+						"tokenId": "- The tokenId"
+					}
+				}
+			},
+			"title": "CTF Exchange",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"FeeCharged(address,uint256,uint256)": {
+					"notice": "Emitted when a fee is charged"
+				},
+				"NewAdmin(address,address)": {
+					"notice": "Emitted when a new admin is added"
+				},
+				"NewOperator(address,address)": {
+					"notice": "Emitted when a new operator is added"
+				},
+				"OrderCancelled(bytes32)": {
+					"notice": "Emitted when an order is cancelled"
+				},
+				"OrderFilled(bytes32,address,address,uint256,uint256,uint256,uint256,uint256)": {
+					"notice": "Emitted when an order is filled"
+				},
+				"OrdersMatched(bytes32,address,uint256,uint256,uint256,uint256)": {
+					"notice": "Emitted when a set of orders is matched"
+				},
+				"RemovedAdmin(address,address)": {
+					"notice": "Emitted when an admin is removed"
+				},
+				"RemovedOperator(address,address)": {
+					"notice": "Emitted when an operator is removed"
+				},
+				"TokenRegistered(uint256,uint256,bytes32)": {
+					"notice": "Emitted when a token is registered"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"addAdmin(address)": {
+					"notice": "Adds a new admin Can only be called by a current admin"
+				},
+				"addOperator(address)": {
+					"notice": "Adds a new operator Can only be called by a current admin"
+				},
+				"cancelOrder((uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes))": {
+					"notice": "Cancels an order An order can only be cancelled by its maker, the address which holds funds for the orderorder - The order to be cancelled"
+				},
+				"cancelOrders((uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes)[])": {
+					"notice": "Cancels a set of ordersorders - The set of orders to be cancelled"
+				},
+				"fillOrder((uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes),uint256)": {
+					"notice": "Fills an order"
+				},
+				"fillOrders((uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes)[],uint256[])": {
+					"notice": "Fills a set of orders"
+				},
+				"getComplement(uint256)": {
+					"notice": "Gets the complement of a tokenId"
+				},
+				"getConditionId(uint256)": {
+					"notice": "Gets the conditionId from a tokenId"
+				},
+				"getMaxFeeRate()": {
+					"notice": "Returns the maximum fee rate for an order"
+				},
+				"getOrderStatus(bytes32)": {
+					"notice": "Gets the status of an order"
+				},
+				"getPolyProxyFactoryImplementation()": {
+					"notice": "Gets the Polymarket Proxy factory implementation address"
+				},
+				"getPolyProxyWalletAddress(address)": {
+					"notice": "Gets the Polymarket proxy wallet address for an address"
+				},
+				"getProxyFactory()": {
+					"notice": "Gets the Proxy factory address"
+				},
+				"getSafeAddress(address)": {
+					"notice": "Gets the Polymarket Gnosis Safe address for an address"
+				},
+				"getSafeFactory()": {
+					"notice": "Gets the Safe factory address"
+				},
+				"getSafeFactoryImplementation()": {
+					"notice": "Gets the Safe factory implementation address"
+				},
+				"hashOrder((uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes))": {
+					"notice": "Computes the hash for an order"
+				},
+				"matchOrders((uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes),(uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes)[],uint256,uint256[])": {
+					"notice": "Matches a taker order against a list of maker orders"
+				},
+				"orderStatus(bytes32)": {
+					"notice": "Mapping of orders to their current status"
+				},
+				"pauseTrading()": {
+					"notice": "Pause trading on the Exchange"
+				},
+				"proxyFactory()": {
+					"notice": "The Polymarket Proxy Wallet Factory Contract"
+				},
+				"registerToken(uint256,uint256,bytes32)": {
+					"notice": "Registers a tokenId, its complement and its conditionId for trading on the Exchange"
+				},
+				"removeAdmin(address)": {
+					"notice": "Removes an existing Admin Can only be called by a current admin"
+				},
+				"removeOperator(address)": {
+					"notice": "Removes an existing operator Can only be called by a current admin"
+				},
+				"renounceAdminRole()": {
+					"notice": "Removes the admin role for the caller Can only be called by an existing admin"
+				},
+				"renounceOperatorRole()": {
+					"notice": "Removes the operator role for the caller Can only be called by an exiting operator"
+				},
+				"safeFactory()": {
+					"notice": "The Polymarket Gnosis Safe Factory Contract"
+				},
+				"setProxyFactory(address)": {
+					"notice": "Sets a new Proxy Wallet factory for the Exchange"
+				},
+				"setSafeFactory(address)": {
+					"notice": "Sets a new safe factory for the Exchange"
+				},
+				"unpauseTrading()": {
+					"notice": "Unpause trading on the Exchange"
+				},
+				"validateComplement(uint256,uint256)": {
+					"notice": "Validates the complement of a tokenId"
+				},
+				"validateOrder((uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes))": {
+					"notice": "Validates an orderorder - The order to be validated"
+				},
+				"validateOrderSignature(bytes32,(uint256,address,address,address,uint256,uint256,uint256,uint256,uint256,uint256,uint8,uint8,bytes))": {
+					"notice": "Validates the signature of an order"
+				},
+				"validateTokenId(uint256)": {
+					"notice": "Validates that a tokenId is registered"
+				}
+			},
+			"notice": "Implements logic for trading CTF assets",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/exchange/CTFExchange.sol": "CTFExchange"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [
+			":common/=src/common/",
+			":creator/=src/creator/",
+			":dev/=src/dev/",
+			":exchange/=src/exchange/",
+			":openzeppelin-contracts/=lib/openzeppelin-contracts/contracts/",
+			":openzeppelin/=lib/openzeppelin-contracts/contracts/",
+			":solmate/=lib/solmate/src/"
+		]
+	},
+	"sources": {
+		"@openzeppelin/contracts/interfaces/IERC1271.sol": {
+			"keccak256": "0x85a45f3f10014a0f8be41157a32b6a5f905753ea64a4b64e29fc12b7deeecf39",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c3c74009ce36136b36c77c23935b8e4a7b4f253be2da2be4fb4a916b1ce43743",
+				"dweb:/ipfs/QmcH36v3iN7SJJuF73AunLR2LtNxhVJ1wm63ph4dPZ4pcL"
+			]
+		},
+		"@openzeppelin/contracts/interfaces/IERC5267.sol": {
+			"keccak256": "0x92aa1df62dc3d33f1656d63bede0923e0df0b706ad4137c8b10b0a8fe549fd92",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c5c0f29195ad64cbe556da8e257dac8f05f78c53f90323c0d2accf8e6922d33a",
+				"dweb:/ipfs/QmQ61TED8uaCZwcbh8KkgRSsCav7x7HbcGHwHts3U4DmUP"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC1155/IERC1155.sol": {
+			"keccak256": "0x6caffc9cfdc623eca9f87a686071708af5d5c17454d65022843fdddbc53c0cce",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ecf8c7ed1f8ff443c181f64496ae380ee02e61dcd2ed120e1e997837a926f182",
+				"dweb:/ipfs/QmWASYTrZPF2MrcpC3EBmxx6RgtZ5Fr4jwrsmB7ZF7qhDC"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0ea104e577e63faea3b69c415637e99e755dcbf64c5833d7140c35a714d6d90c",
+				"dweb:/ipfs/Qmau6x4Ns9XdyynRCNNp3RhLqijJjFm7z5fyZazfYFGYdq"
+			]
+		},
+		"@openzeppelin/contracts/utils/ShortStrings.sol": {
+			"keccak256": "0x18a7171df639a934592915a520ecb97c5bbc9675a1105607aac8a94e72bf62c6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7478e1f13da69a2867ccd883001d836b75620362e743f196376d63ed0c422a1c",
+				"dweb:/ipfs/QmWywcQ9TNfwtoqAxbn25d8C5VrV12PrPS9UjtGe6pL2BA"
+			]
+		},
+		"@openzeppelin/contracts/utils/StorageSlot.sol": {
+			"keccak256": "0x32ba59b4b7299237c8ba56319110989d7978a039faf754793064e967e5894418",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1ae50c8b562427df610cc4540c9bf104acca7ef8e2dcae567ae7e52272281e9c",
+				"dweb:/ipfs/QmTHiadFCSJUPpRjNegc5SahmeU8bAoY8i9Aq6tVscbcKR"
+			]
+		},
+		"@openzeppelin/contracts/utils/Strings.sol": {
+			"keccak256": "0x55f102ea785d8399c0e58d1108e2d289506dde18abc6db1b7f68c1f9f9bc5792",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6e52e0a7765c943ef14e5bcf11e46e6139fa044be564881378349236bf2e3453",
+				"dweb:/ipfs/QmZEeeXoFPW47amyP35gfzomF9DixqqTEPwzBakv6cZw6i"
+			]
+		},
+		"@openzeppelin/contracts/utils/cryptography/ECDSA.sol": {
+			"keccak256": "0xeed0a08b0b091f528356cbc7245891a4c748682d4f6a18055e8e6ca77d12a6cf",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ba80ba06c8e6be852847e4c5f4492cef801feb6558ae09ed705ff2e04ea8b13c",
+				"dweb:/ipfs/QmXRJDv3xHLVQCVXg1ZvR35QS9sij5y9NDWYzMfUfAdTHF"
+			]
+		},
+		"@openzeppelin/contracts/utils/cryptography/EIP712.sol": {
+			"keccak256": "0x999f705a027ed6dc2d4e0df2cc4a509852c6bfd11de1c8161bf88832d0503fd0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0798def67258d9a3cc20b2b4da7ebf351a5cefe0abfdd665d2d81f8e32f89b21",
+				"dweb:/ipfs/QmPEvJosnPfzHNjKvCv2D3891mA2Ww8eUwkqrxBjuYdHCt"
+			]
+		},
+		"@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol": {
+			"keccak256": "0xba333517a3add42cd35fe877656fc3dfcc9de53baa4f3aabbd6d12a92e4ea435",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2ceacff44c0fdc81e48e0e0b1db87a2076d3c1fb497341de077bf1da9f6b406c",
+				"dweb:/ipfs/QmRUo1muMRAewxrKQ7TkXUtknyRoR57AyEkoPpiuZQ8FzX"
+			]
+		},
+		"@openzeppelin/contracts/utils/cryptography/draft-EIP712.sol": {
+			"keccak256": "0xea30c402170bc240354b74e6c6f6a8e5bdb1935d90d168cc58c0654461c6a72b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://95cbddf89006e6dbbc200eb091eb90025c97a9980310f2325c9bda2c4fdc97e3",
+				"dweb:/ipfs/QmT67Dt3xrKEQSDC4XyDcrKwZUYsJzddrRFjEopRZNP9yR"
+			]
+		},
+		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
+			"keccak256": "0x4296879f55019b23e135000eb36896057e7101fb7fb859c5ef690cf14643757b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://87b3541437c8c443ccd36795e56a338ed12855eec17f8da624511b8d1a7e14df",
+				"dweb:/ipfs/QmeJQCtZrQjtJLr6u7ZHWeH3pBnjtLWzvRrKViAi7UZqxL"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/Math.sol": {
+			"keccak256": "0x005ec64c6313f0555d59e278f9a7a5ab2db5bdc72a027f255a37c327af1ec02d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4ece9f0b9c8daca08c76b6b5405a6446b6f73b3a15fab7ff56e296cbd4a2c875",
+				"dweb:/ipfs/QmQyRpyPRL5SQuAgj6SHmbir3foX65FJjbVTTQrA2EFg6L"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/SignedMath.sol": {
+			"keccak256": "0x5f7e4076e175393767754387c962926577f1660dd9b810187b9002407656be72",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7d533a1c97cd43a57cd9c465f7ee8dd0e39ae93a8fb8ff8e5303a356b081cdcc",
+				"dweb:/ipfs/QmVBEei6aTnvYNZp2CHYVNKyZS4q1KkjANfY39WVXZXVoT"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/IERC1155Receiver.sol": {
+			"keccak256": "0x0f8b8696348d5a57b13d44f5cc63894f0368038c06f6d00bdeda6f9aa13127e7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://718159abc22da25c2de7e70f6b7bbbf6b6e20c3db6681893f8049b57f4ee65ce",
+				"dweb:/ipfs/QmPJeQ7Qj7mrAwfR69sLjyjUSb44B7yAJXvMG1NFtoTJKv"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC1155/utils/ERC1155Holder.sol": {
+			"keccak256": "0xf4852d52ec991c38fb7875f3573e42509c8414a8c1e3106e7c12ef8c8a568b50",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b0e4b3479f7c4c56beb0116700862f5595fa00af74739fafd6ba39cdcc7e13fd",
+				"dweb:/ipfs/QmS6sMpcUqXQQR1LTS7gCyXi3D2bafoS2PsfVKqFFywmLw"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/ERC165.sol": {
+			"keccak256": "0x6fac27fb1885a1d9fd2ce3f8fac4e44a6596ca4d44207c9ef2541ba8c941291e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2079378abdb36baec15c23bc2353b73a3d28d1d0610b436b0c1c4e6fa61d65c9",
+				"dweb:/ipfs/QmVZkRFMzKW7sLaugKSTbMNnUBKWF3QDsoMi5uoQFyVMjf"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/introspection/IERC165.sol": {
+			"keccak256": "0xc859863e3bda7ec3cddf6dafe2ffe91bcbe648d1395b856b839c32ee9617c44c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a9d5417888b873cf2225ed5d50b2a67be97c1504134a2a580512168d587ad82e",
+				"dweb:/ipfs/QmNr5fTb2heFW658NZn7dDnofZgFvQTnNxKRJ3wdnR1skX"
+			]
+		},
+		"https://github.com/transmissions11/solmate/blob/main/src/tokens/ERC20.sol": {
+			"keccak256": "0xcdfd8db76b2a3415620e4d18cc5545f3d50de792dbf2c3dd5adb40cbe6f94b10",
+			"license": "AGPL-3.0-only",
+			"urls": [
+				"bzz-raw://57b3ab70cde374af1cf2c9888636e8de6cf660f087b1c9abd805e9271e19fa35",
+				"dweb:/ipfs/QmNrLDBAHYFjpjSd12jerm1AdBkDqEYUUaXgnT854BUZ97"
+			]
+		},
+		"https://github.com/transmissions11/solmate/blob/main/src/utils/SafeTransferLib.sol": {
+			"keccak256": "0x6ab948013c2c7ca6351e593600425b0ec6df9035320280c678e735bce16e996b",
+			"license": "AGPL-3.0-only",
+			"urls": [
+				"bzz-raw://2ab977d0eeb2bf458f9798250215c646d2f3b1f90b5a7e2b506fdf3335c0f060",
+				"dweb:/ipfs/QmYPRoPhNtBAmCSq7imN1scMVpKNQvMTpoqab3tXUx5Tnv"
+			]
+		},
+		"src/common/ReentrancyGuard.sol": {
+			"keccak256": "0x51475ac2429bbf514b7b0b9e1833857c009e283d553ea086c33dcf52d4857a16",
+			"license": "AGPL-3.0-only",
+			"urls": [
+				"bzz-raw://e92d88f9a6365da67417290b1af11b63312d8ab5b8e1a296490a897cf4e376a9",
+				"dweb:/ipfs/QmR8xgKmExUftpQD4M8gT1kyR13ULaUvyv5rRuC9bicJKP"
+			]
+		},
+		"src/common/libraries/SafeTransferLib.sol": {
+			"keccak256": "0x312e9b65121fa49fe7cdf817b130ef08c8f676b2abd779b83b07a6299b06dc93",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0045b95189b6b0d38487f1a376c1086713c7a9395573ae4169ab0de52324949a",
+				"dweb:/ipfs/QmP9bGCaRfUCgRJ1RK7HfxP13CGATkhZBgqaDzfiubo2zA"
+			]
+		},
+		"src/exchange/BaseExchange.sol": {
+			"keccak256": "0xf7a72cb6755c8fcfdc873559af3e3ddb043862d9d3c42cb0e236f1fadad5811a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f1bef13cff474bc709fda13a29fd96098606e1e894ded6b67463a123a01afb95",
+				"dweb:/ipfs/QmSZgYPH8hyibZLWtjYUwU18kAPGGBawxvgdpEiGsA1ifb"
+			]
+		},
+		"src/exchange/CTFExchange.sol": {
+			"keccak256": "0x0d5df302222458c7b44d487afab3e7b5720985fb02753fafe9d30e7eeb5262b0",
+			"urls": [
+				"bzz-raw://50db875a92ddec8153e95fa1f0b1ec76929b532ebffe8a7d89e9ef6acc5120db",
+				"dweb:/ipfs/QmX6uhW1YzC1meCx1N372e4F1UsTEmPztJRT9FwjT4HLZu"
+			]
+		},
+		"src/exchange/interfaces/IAssetOperations.sol": {
+			"keccak256": "0x699d40015c3d6c24f9145886d19e20ebb6887c1c676d9b972c0a0a611786ed5b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4a6ac4553a301d37c2b8518bcf70180f8b6d85ffcc1a9cc9597866b58d355c5e",
+				"dweb:/ipfs/QmT2fcBoHN7aqEQ8cMa87zwyNbA29xTtjw2yFwX7U4uHP9"
+			]
+		},
+		"src/exchange/interfaces/IAssets.sol": {
+			"keccak256": "0xf24de0c34a39131536eee303a74c5b01380879879e1075a94e10a94280176035",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8741e3d8e944e8c8021c3d04ee9ad28d6a4f2da4c77d4edca451c71914ed19ba",
+				"dweb:/ipfs/QmdyCHLeW4grjbG5X67tPbtZvWZvYsX35cD8rXY7S7CwtZ"
+			]
+		},
+		"src/exchange/interfaces/IAuth.sol": {
+			"keccak256": "0x28840ffbea3ecba8ba9fb19272ba3f3c5be11af9f3fac19bd9e183142554c436",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a650ccbc2b69cb929fd4c8572f804f4c19b794bbb43e0e1d507db1663cd4ee6",
+				"dweb:/ipfs/QmTwdHsTA8UZ52GysqBaMfs8bbQGJoEwdRn9UZ38wwEV1V"
+			]
+		},
+		"src/exchange/interfaces/IConditionalTokens.sol": {
+			"keccak256": "0xb513d4946e82e3c1d9b1e0b5dfca2bf5512a750afe4c033685d933d89add6d4b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://34ad6f59ddf7c129deb194359344e8215168232ce118e328d8498d90c62a1182",
+				"dweb:/ipfs/QmQgU2RgiXV8LwHrM2ttNCaLC84LPRk5XnZgfY2GJidNpt"
+			]
+		},
+		"src/exchange/interfaces/IFees.sol": {
+			"keccak256": "0x94910bd74962e9bee385ea7b6fbc7f8ef9344e6c650ae534434a45907e65601d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0c5a673ed2eaf5de79f4d784401015eaef05b7d06be898204b069c1ea5b4b3de",
+				"dweb:/ipfs/QmcsFzpLy1kfAjMXpmd4igHHSzMxPyukCPsaZFovnABV7S"
+			]
+		},
+		"src/exchange/interfaces/IHashing.sol": {
+			"keccak256": "0xfa065713a0e9ab2a2eea407144344ebdc5f96a50763e8bcd26614e8a29618b4b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5301d014a3ba3abef2601867bd3783950af5c121254ad961d98e873933ae27ff",
+				"dweb:/ipfs/QmVC2G3YanK2Uok3fi7b1M6x7oke7r5CurfWE2CUU3PpuH"
+			]
+		},
+		"src/exchange/interfaces/INonceManager.sol": {
+			"keccak256": "0xdafbd9242bdbf96a9b6d8fab709d5fc9235540f1b9d5fc7e88fda2bc55ca4ecc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8dea605edf760a8c290e85e31c33417b46499430d2121fb25cf0cd8a3b60de14",
+				"dweb:/ipfs/QmXEZUEMkcwQKzAZR2K3A7tZHxUFnXKANJ6wkNA7end5o3"
+			]
+		},
+		"src/exchange/interfaces/IPausable.sol": {
+			"keccak256": "0x9fd256477ea8b221df172e742e82b9acbbe92542b091e90d9f6481cd17b5b16c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://47be49567b529875e9f55e1e9a525cdb4df4a1d3bc6c2353b5a4905e0c5ea6a9",
+				"dweb:/ipfs/QmQ2ccCsBDuKQFxy9BwHdhS4ms3fgp6TLXSnXzNcwcCmYX"
+			]
+		},
+		"src/exchange/interfaces/IRegistry.sol": {
+			"keccak256": "0x4f2dfb6549927580d679a500e7292523b75f83292e22b5434863081a0a89b656",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://10418609e8ffa8576d331b9f981984040805a610884e1aa0d369f8bd89ed26c1",
+				"dweb:/ipfs/QmasnvPKKyZRP52M6JhXUNNKRFr5XSRiaorLPCu8zN55PA"
+			]
+		},
+		"src/exchange/interfaces/ISignatures.sol": {
+			"keccak256": "0xebda841593e4e6adc6479ecc8c019c071c1ba241599c61b49bf2a77a674ac558",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://259e6ce3aaebd89ad38d4e25b63861e92b879f979273524d6483939ce5fc545e",
+				"dweb:/ipfs/QmRzTA2Bdu6NG2qMHVqXiwEYdbyuE3vXidpNMkUwzexAMd"
+			]
+		},
+		"src/exchange/interfaces/ITrading.sol": {
+			"keccak256": "0xa06ff0c9dee50838f221ac0761414874805538751d9011b48272f9ac04fc7353",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://af9abfc33326d045e518decd655e570d8b25737d961008ca9e7b584318b5e5d0",
+				"dweb:/ipfs/QmQpjQUZVCEE7pex9K1WWG9qxbDRnBoaNyfq8s1wwLWFUN"
+			]
+		},
+		"src/exchange/libraries/CalculatorHelper.sol": {
+			"keccak256": "0xa7234192ae26da247e3fe18958907e556e73c022480ea9c91b49744cce8f1949",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://87592da00cb7da14312f445c27cdfe1b8521729758bf7a076e88e121e006e988",
+				"dweb:/ipfs/QmRufuL8V74Ud2nqQCjVdnSGxzxawX33qzsQe8nfRUEQWy"
+			]
+		},
+		"src/exchange/libraries/OrderStructs.sol": {
+			"keccak256": "0x77c6e2c11bac9b60ab0c6b7d03ad11c829f176ba35f6418bbcefb10e8713d39a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b0b31336ee6be3a2a5dec6676a76bfa3435d10085ae40c9d333e980dfbbe369b",
+				"dweb:/ipfs/QmNjqk8xvq6VcxE3KPuGq3iv1RiLZUT3feqzq8wntSiZ2J"
+			]
+		},
+		"src/exchange/libraries/PolyProxyLib.sol": {
+			"keccak256": "0x61e523b9f2d66217963acf42086746db43823cda37b2fb3a6e46efd7727b668e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://250c6a90c192c041225244b9a91ee61cab4a8ba9834791d590d74b0f32c7ea36",
+				"dweb:/ipfs/QmRy2yM3omqYAiB2KKFC5Rqv9dV3yPehoHUd2Sk9X8mdx7"
+			]
+		},
+		"src/exchange/libraries/PolySafeLib.sol": {
+			"keccak256": "0x38030ab9c88a7e87974e1e46c80f640452e3f0099043750c680a086455194bd2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2fdb8f5e134b8a659c116794f6d698674ad629fb50a7889ee08f98230cce7f4d",
+				"dweb:/ipfs/QmZjfP7LaE7yDCgDyHRzjmD22zJmouruVooH7xJRPfgGhM"
+			]
+		},
+		"src/exchange/libraries/TransferHelper.sol": {
+			"keccak256": "0x3cb5f7e1418dd571f03e45dc740cd665d3a460ef1358142c2688d6866f3b385a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://252d5fb12292a9ec1608bf343cb64a2daa166ccdb0e7fa88804850e0b06dfa08",
+				"dweb:/ipfs/QmbbnmDES6QRL6BpoC87bWHQxivQAJ3xwTbJM5GY8MZ9tG"
+			]
+		},
+		"src/exchange/mixins/AssetOperations.sol": {
+			"keccak256": "0xfbec661d50ae4f1bc0c800a671c93c8f58f6c8e8ef90b2da45d08ac0e15db122",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7a7031488889ec3861a7a24789163b965435a983980bab29f7d999db536707e6",
+				"dweb:/ipfs/QmZBA8FXtQ5RwREaTneY6n9Kq12k6gtxUHPHqWCBqLDLQG"
+			]
+		},
+		"src/exchange/mixins/Assets.sol": {
+			"keccak256": "0x4a8f981028e70bf2570eefdb5b2587e878231b822206476ca5966804d8f56384",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://53fbd025260bc583adb16d2ce31e75fd09055e0fdfd78493d3c30f1bca64ac8d",
+				"dweb:/ipfs/QmPzvP3Lyzj2J8vQi7rRRiJkCV3kn9uq5pfQcwgDnd8vtU"
+			]
+		},
+		"src/exchange/mixins/Auth.sol": {
+			"keccak256": "0x8977d1321c550ee2ba58e9dd5cbb044ca5e8e0a26aab92df76be0b905a1d77b0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://05a61f151952f515003c9797e72d266a7a4ace4b5d0793829e07b649318c4e80",
+				"dweb:/ipfs/Qmce6zy5LZHHT5db5b7fi46MxgYMzTSq4jD8fdAmQ61GRf"
+			]
+		},
+		"src/exchange/mixins/Fees.sol": {
+			"keccak256": "0x3454ddb3c5f07dba53638af88026df751b3ca9431433cd173430b62dd22da4ec",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e508671dfca599835fc4916645fc0ee29eb4de8c942d63583aede7ae2ffe65ef",
+				"dweb:/ipfs/QmQFMBd5ZcUA9qPPbpqoiXoy4ebvDGRmCQ4UzzGCo3wFtg"
+			]
+		},
+		"src/exchange/mixins/Hashing.sol": {
+			"keccak256": "0x2dda69380d3731754709f7d42d1c5a4490adbda0d2311da0a89c102c824ce482",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f5e6436f839ae157e47e5da49163e352f5f717a11649eba0f1a5f098345a94f7",
+				"dweb:/ipfs/QmarizwtZwjfJu8NnGC5Mb6KUG7RuGBhua19bXrTjbG9XD"
+			]
+		},
+		"src/exchange/mixins/NonceManager.sol": {
+			"keccak256": "0x00865e31b738a8318c33fc6b3a07b474f5cc51e9ee9a7e9d4ee558af75cf7d02",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://10c731bb43053c677c8e21e5ca6c0fd4d0d921bf0aae13c439e14b80237c841c",
+				"dweb:/ipfs/QmVseycNZUzjWy1JRTc1zJhj11iVw5G6oMWe8FuMcMmyTf"
+			]
+		},
+		"src/exchange/mixins/Pausable.sol": {
+			"keccak256": "0x35765bcb37ca980d478b066c00ed6efdb357dc2ad9ecf7a6b0689dbd09631eab",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8afe0f4b8d7ed16349224f6c808caf1e80bcbdac489d038800a95dd95f105238",
+				"dweb:/ipfs/QmaAHATxCBfe3kMjeWknEoURHsFQTqvki76KmRUkCY73yu"
+			]
+		},
+		"src/exchange/mixins/PolyFactoryHelper.sol": {
+			"keccak256": "0x7a54482123cfb8eebb914cc43f12d656f2291209e5d6ae7f014545c3c8ee26b9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://37c444e92d53a24f86e3a6531644141a5548df9a5d6da6fb1e615da4609590a7",
+				"dweb:/ipfs/QmYUQMUhRDqJtYreY1GWpgq6GiTxWeBvJ4gQmBUkEoXuB4"
+			]
+		},
+		"src/exchange/mixins/Registry.sol": {
+			"keccak256": "0x6c3af2124e5002fa6c653b1858159e67889cc228f2c4b23da2389b39ead31806",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://89a053877b096053794a3e575ac3f4e1bb2d42de42f3a476a9a3e8303693194a",
+				"dweb:/ipfs/QmWH5ZfjYeLTPR8Jmcy1nfTaBfqBxJDH1Puf8R1kV9HpBW"
+			]
+		},
+		"src/exchange/mixins/Signatures.sol": {
+			"keccak256": "0x9131a7cfce500a8f8697f3d0445ad9704b51a88cbd17332e3d1ce3f7e3e6f030",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://cc519c3db8442c8adcc832a8740cd29a0eb8079a8b369b797d39a2748d761ff4",
+				"dweb:/ipfs/QmUmDXbBFHaQqgQzDbrHJ1ACgiYFpLocf6xwZpzTNsCUr7"
+			]
+		},
+		"src/exchange/mixins/Trading.sol": {
+			"keccak256": "0x9c0f6025629047d9680262a66d89e8720ffbdd62a73681f5b77083ead8daa99d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://01287bc4b8b6693ab618f4287527a6681c18dfdf9a69ed85dab5f902a082f9bd",
+				"dweb:/ipfs/QmTDaixdDGgKZL2VB1E8CMrMqyzNrt7xQMytthcqNvcFgb"
+			]
+		}
+	},
+	"version": 1
+}

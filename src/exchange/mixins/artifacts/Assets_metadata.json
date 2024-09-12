@@ -1,0 +1,96 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getCollateral",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCtf",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/exchange/mixins/Assets.sol": "Assets"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [
+			":common/=src/common/",
+			":creator/=src/creator/",
+			":dev/=src/dev/",
+			":exchange/=src/exchange/",
+			":openzeppelin-contracts/=lib/openzeppelin-contracts/contracts/",
+			":openzeppelin/=lib/openzeppelin-contracts/contracts/",
+			":solmate/=lib/solmate/src/"
+		]
+	},
+	"sources": {
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0ea104e577e63faea3b69c415637e99e755dcbf64c5833d7140c35a714d6d90c",
+				"dweb:/ipfs/Qmau6x4Ns9XdyynRCNNp3RhLqijJjFm7z5fyZazfYFGYdq"
+			]
+		},
+		"src/exchange/interfaces/IAssets.sol": {
+			"keccak256": "0xf24de0c34a39131536eee303a74c5b01380879879e1075a94e10a94280176035",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8741e3d8e944e8c8021c3d04ee9ad28d6a4f2da4c77d4edca451c71914ed19ba",
+				"dweb:/ipfs/QmdyCHLeW4grjbG5X67tPbtZvWZvYsX35cD8rXY7S7CwtZ"
+			]
+		},
+		"src/exchange/mixins/Assets.sol": {
+			"keccak256": "0x4a8f981028e70bf2570eefdb5b2587e878231b822206476ca5966804d8f56384",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://53fbd025260bc583adb16d2ce31e75fd09055e0fdfd78493d3c30f1bca64ac8d",
+				"dweb:/ipfs/QmPzvP3Lyzj2J8vQi7rRRiJkCV3kn9uq5pfQcwgDnd8vtU"
+			]
+		}
+	},
+	"version": 1
+}
