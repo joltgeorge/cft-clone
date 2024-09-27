@@ -1,3 +1,5 @@
+# once compile on Remix, you need to upload all the folders and files, not the root directory!!!
+
 # Polymarket CTF Exchange
 
 [![Version][version-badge]][version-link]

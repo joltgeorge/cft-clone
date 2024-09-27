@@ -1,0 +1,55 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"title": "PolySafeLib",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "Helper library to compute Polymarket gnosis safe addresses",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"src/exchange/libraries/PolySafeLib.sol": "PolySafeLib"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [
+			":common/=src/common/",
+			":creator/=src/creator/",
+			":dev/=src/dev/",
+			":exchange/=src/exchange/",
+			":openzeppelin-contracts/=lib/openzeppelin-contracts/contracts/",
+			":openzeppelin/=lib/openzeppelin-contracts/contracts/",
+			":solmate/=lib/solmate/src/"
+		]
+	},
+	"sources": {
+		"src/exchange/libraries/PolySafeLib.sol": {
+			"keccak256": "0x43362be58e6aa9034138af8a9dbff5552f2083e8baeca6b68920eeb027d7f7f5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://102d1a430a876fa77ffaa56d984fd6697d7e48c831dfeb1f36b157eb748986eb",
+				"dweb:/ipfs/QmcSYMVY1uj6vcjrQzWTdE3hPjeVFNN7HbCbPdMDU4cc6B"
+			]
+		}
+	},
+	"version": 1
+}

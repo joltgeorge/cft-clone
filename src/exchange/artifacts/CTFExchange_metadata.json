@@ -2435,10 +2435,10 @@
 			]
 		},
 		"src/exchange/CTFExchange.sol": {
-			"keccak256": "0x0d5df302222458c7b44d487afab3e7b5720985fb02753fafe9d30e7eeb5262b0",
+			"keccak256": "0x01cf7cfe8519711255d99f6478902677b389f82c56d01a1096bd6418b1c9f9ac",
 			"urls": [
-				"bzz-raw://50db875a92ddec8153e95fa1f0b1ec76929b532ebffe8a7d89e9ef6acc5120db",
-				"dweb:/ipfs/QmX6uhW1YzC1meCx1N372e4F1UsTEmPztJRT9FwjT4HLZu"
+				"bzz-raw://58850788ed9552282af384b9092a938d1e09b646590fa1d73499425edbea153e",
+				"dweb:/ipfs/QmZfmJUoHij3WWTgj3W2LK8fWxvuBND1KqFcj5u4sjC8xd"
 			]
 		},
 		"src/exchange/interfaces/IAssetOperations.sol": {
@@ -2554,11 +2554,11 @@
 			]
 		},
 		"src/exchange/libraries/PolySafeLib.sol": {
-			"keccak256": "0x38030ab9c88a7e87974e1e46c80f640452e3f0099043750c680a086455194bd2",
+			"keccak256": "0x43362be58e6aa9034138af8a9dbff5552f2083e8baeca6b68920eeb027d7f7f5",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2fdb8f5e134b8a659c116794f6d698674ad629fb50a7889ee08f98230cce7f4d",
-				"dweb:/ipfs/QmZjfP7LaE7yDCgDyHRzjmD22zJmouruVooH7xJRPfgGhM"
+				"bzz-raw://102d1a430a876fa77ffaa56d984fd6697d7e48c831dfeb1f36b157eb748986eb",
+				"dweb:/ipfs/QmcSYMVY1uj6vcjrQzWTdE3hPjeVFNN7HbCbPdMDU4cc6B"
 			]
 		},
 		"src/exchange/libraries/TransferHelper.sol": {
